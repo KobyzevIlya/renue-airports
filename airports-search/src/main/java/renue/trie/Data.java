@@ -1,18 +1,18 @@
 package renue.trie;
 
-public class Node {
-    private String data;
+public class Data {
+    private String name;
     private int startByte;
     private int endByte;
 
-    public Node(String data, int startByte, int endByte) {
-        this.data = data;
+    public Data(String name, int startByte, int endByte) {
+        this.name = name;
         this.startByte = startByte;
         this.endByte = endByte;
     }
 
-    public String getData() {
-        return data;
+    public String getName() {
+        return name;
     }
 
     public int getStartByte() {
@@ -23,7 +23,7 @@ public class Node {
         return endByte;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -9,7 +9,7 @@ import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
 
-import renue.trie.Node;
+import renue.trie.Data;
 
 class FileReader {
     private RandomAccessFile RAFile;
@@ -22,11 +22,10 @@ class FileReader {
         }
     }
 
-    List<Node> getLinesWithStartEndBytes() {
-        List<Node> futureNodes = new ArrayList<>();
+    List<Data> getLinesWithStartEndBytes() {
+        List<Data> futureNodes = new ArrayList<>();
 
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(RAFile.getFD()), "UTF-8"));
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(RAFile.getFD()), "UTF-8"))) {
 
             int byteCount = 0;
 
@@ -40,12 +39,18 @@ class FileReader {
                 end = lineByteCount + byteCount;
                 byteCount += lineByteCount;
 
-                futureNodes.add(new Node(line, start, end));
+                futureNodes.add(new Data(line, start, end));
             }
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
         
+        try {
+            RAFile.close();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+
         return futureNodes;
     }
 }
