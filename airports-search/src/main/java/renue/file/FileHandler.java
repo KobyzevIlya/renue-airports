@@ -23,6 +23,10 @@ public class FileHandler {
         return nodes;
     }
 
+    public String getAirportInfo(int start, int end) {
+        return fileReader.getLineByBytes(start, end);
+    }
+
     private String getAirtportName(String csvString) {
         String[] parts = csvString.split(",");
         if (parts.length >= 2) {
