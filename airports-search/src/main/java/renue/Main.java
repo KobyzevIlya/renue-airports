@@ -12,7 +12,7 @@ import renue.utils.Pair;
 
 public class Main {
     public static void main( String[] args ) {
-        FileHandler fileHandler = new FileHandler("./airports-search/src/main/java/renue/resources/airports.csv");
+        FileHandler fileHandler = new FileHandler("./airports-search/src/main/resources/airports.csv");
         Deque<Data> nodes = fileHandler.getNodes();
 
         Trie trie = new Trie();
