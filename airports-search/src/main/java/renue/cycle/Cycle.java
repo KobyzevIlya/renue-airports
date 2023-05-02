@@ -30,12 +30,17 @@ public class Cycle {
 
         ConsoleHandler consoleHandler = new ConsoleHandler();
 
-        String name = null;
-        String filters = null;
+        String name = "null";
+        String filters = "null";
 
-        while (name != "!quit" && filters != "quit") {
+        while (!name.equals("!quit") && !filters.equals("!quit")) {
+            filters = consoleHandler.getFilters();
+            if (filters.equals("!quit")) {
+                break;
+            }
+            
             name = consoleHandler.getName();
-            if (name == "!quit") {
+            if (name.equals("!quit")) {
                 break;
             }
 

@@ -20,6 +20,14 @@ public class Trie {
             current = current.children.get(c);
         }
 
+        if (current.bytes != null) {
+            while (current.children.containsKey('\0')) {
+                current = current.children.get('\0');
+            }
+            current.children.put('\0', new TrieNode());
+            current = current.children.get('\0');
+        }
+
         current.bytes = new Pair<Integer,Integer>(data.getStartByte(), data.getEndByte());
     }
 
