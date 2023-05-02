@@ -1,7 +1,6 @@
 package renue.file;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.List;
 
 import renue.trie.Data;
 
@@ -12,9 +11,8 @@ public class FileHandler {
         fileReader = new FileReader(filePath);
     }
 
-    public Deque<Data> getNodes() {
-        Deque<Data> nodes = new ArrayDeque<>();
-        nodes.addAll(fileReader.getLinesWithStartEndBytes());
+    public List<Data> getNodes() {
+        List<Data> nodes = fileReader.getLinesWithStartEndBytes();
         
         for (Data node : nodes) {
             node.setName(getAirtportName(node.getName()));
