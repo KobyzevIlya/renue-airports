@@ -29,7 +29,7 @@ class FileReader {
 
             while ((line = bufferedReader.readLine()) != null) {
                 start = end;
-                end += line.getBytes("UTF-8").length + System.lineSeparator().length(); // TODO check +1 or +line separator
+                end += line.getBytes("UTF-8").length + System.lineSeparator().length();
                 futureNodes.add(new Data(line, start, end));
             }
         } catch (Exception e) {
