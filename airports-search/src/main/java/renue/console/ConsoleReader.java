@@ -16,7 +16,7 @@ class ConsoleReader {
         }
     }
 
-    public String getLine() {
+    String getLine() {
         String line = null;
         try {
             line = reader.readLine();

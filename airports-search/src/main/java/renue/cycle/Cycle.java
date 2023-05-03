@@ -1,11 +1,13 @@
 package renue.cycle;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
 import renue.console.ConsoleHandler;
 import renue.file.FileHandler;
+import renue.filter.Filter;
 import renue.trie.Data;
 import renue.trie.Trie;
 import renue.utils.Pair;
@@ -44,19 +46,21 @@ public class Cycle {
                 break;
             }
 
+            List<String[]> airportsInfos = new ArrayList<>();
             long startTime = System.currentTimeMillis();
 
-            List<Pair<Integer, Integer>> airportsInfos = trie.search(name);
-            for (Pair<Integer, Integer> info : airportsInfos) {
-                System.out.print(fileHandler.getAirportInfo(info.getFirst(), info.getSecond()));
-            } 
+            List<Pair<Integer, Integer>> airportsLocations = trie.search(name);
+            for (Pair<Integer, Integer> airport : airportsLocations) {
+                airportsInfos.add(fileHandler.getAirportInfo(airport.getFirst(), airport.getSecond()));
+            }
+            airportsInfos = Filter.filter(airportsInfos, filters);
 
             long endTime = System.currentTimeMillis();
-
             long elapsedTime = endTime - startTime;
-
-            System.out.println("\n" + "Количество найденных строк: " + airportsInfos.size());
-            System.out.println("Время, затраченное на поиск: " + elapsedTime + " мс" + "\n");
+            
+            consoleHandler.printAirportsInfos(airportsInfos);
+            consoleHandler.printFoundAirportsCount(airportsInfos.size());
+            consoleHandler.printElapsedTime(elapsedTime);
         }
     }
 }

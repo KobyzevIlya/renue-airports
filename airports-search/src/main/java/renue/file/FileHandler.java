@@ -21,8 +21,8 @@ public class FileHandler {
         return nodes;
     }
 
-    public String getAirportInfo(int start, int end) {
-        return fileReader.getLineByBytes(start, end);
+    public String[] getAirportInfo(int start, int end) {
+        return fileReader.getLineByBytes(start, end).split(",");
     }
 
     private String getAirtportName(String csvString) {
