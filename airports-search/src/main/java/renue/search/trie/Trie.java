@@ -1,17 +1,20 @@
-package renue.trie;
+package renue.search.trie;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import renue.search.Data;
+import renue.search.Searchable;
 import renue.utils.Pair;
 
-public class Trie {
+public class Trie implements Searchable {
     private TrieNode root;
 
     public Trie() {
         root = new TrieNode();
     }
 
+    @Override
     public void insert(Data data) {
         TrieNode current = root;
 
@@ -31,6 +34,7 @@ public class Trie {
         current.bytes = new Pair<Integer,Integer>(data.getStartByte(), data.getEndByte());
     }
 
+    @Override
     public List<Pair<Integer, Integer>> search(String prefix) {
         TrieNode current = root;
         List<Pair<Integer, Integer>> result = new ArrayList<>();

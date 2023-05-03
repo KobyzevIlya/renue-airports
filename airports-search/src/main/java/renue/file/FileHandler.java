@@ -2,7 +2,7 @@ package renue.file;
 
 import java.util.List;
 
-import renue.trie.Data;
+import renue.search.Data;
 
 public class FileHandler {
     private FileReader fileReader;

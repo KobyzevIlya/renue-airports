@@ -7,7 +7,7 @@ import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
 
-import renue.trie.Data;
+import renue.search.Data;
 
 class FileReader {
     private String path;

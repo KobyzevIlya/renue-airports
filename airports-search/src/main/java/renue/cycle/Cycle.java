@@ -8,8 +8,9 @@ import java.util.List;
 import renue.console.ConsoleHandler;
 import renue.file.FileHandler;
 import renue.filter.Filter;
-import renue.trie.Data;
-import renue.trie.Trie;
+import renue.search.Data;
+import renue.search.Searchable;
+import renue.search.hashmap.HMap;
 import renue.utils.Pair;
 
 public class Cycle {
@@ -24,10 +25,10 @@ public class Cycle {
         Deque<Data> nodes = new ArrayDeque<>();
         nodes.addAll(fileHandler.getNodes());
 
-        Trie trie = new Trie();
+        Searchable search = new HMap();
 
         while (!nodes.isEmpty()) {
-            trie.insert(nodes.removeFirst());
+            search.insert(nodes.removeFirst());
         }
 
         ConsoleHandler consoleHandler = new ConsoleHandler();
@@ -49,11 +50,16 @@ public class Cycle {
             List<String[]> airportsInfos = new ArrayList<>();
             long startTime = System.currentTimeMillis();
 
-            List<Pair<Integer, Integer>> airportsLocations = trie.search(name);
+            List<Pair<Integer, Integer>> airportsLocations = search.search(name);
             for (Pair<Integer, Integer> airport : airportsLocations) {
                 airportsInfos.add(fileHandler.getAirportInfo(airport.getFirst(), airport.getSecond()));
             }
-            airportsInfos = Filter.filter(airportsInfos, filters);
+
+            try {
+                airportsInfos = Filter.filter(airportsInfos, filters);
+            } catch (IllegalArgumentException e) {
+                continue;
+            } 
 
             long endTime = System.currentTimeMillis();
             long elapsedTime = endTime - startTime;

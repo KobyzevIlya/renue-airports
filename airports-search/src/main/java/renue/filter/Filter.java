@@ -105,6 +105,10 @@ public class Filter {
     }
 
     public static List<String[]> filter(List<String[]> rows, String expression) {
+        if (expression.isEmpty() || expression == null) {
+            return rows;
+        }
+        
         List<String> rpn = toReversePolish(expression);
         List<String[]> filteredRows = new ArrayList<>();
         for (String[] row : rows) {

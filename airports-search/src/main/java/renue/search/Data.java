@@ -1,4 +1,4 @@
-package renue.trie;
+package renue.search;
 
 public class Data {
     private String name;

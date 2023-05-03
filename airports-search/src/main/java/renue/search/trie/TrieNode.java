@@ -1,4 +1,4 @@
-package renue.trie;
+package renue.search.trie;
 
 import java.util.HashMap;
 import java.util.Map;
