@@ -10,7 +10,7 @@ import renue.file.FileHandler;
 import renue.filter.Filter;
 import renue.search.Data;
 import renue.search.Searchable;
-import renue.search.hashmap.HMap;
+import renue.search.trie.Trie;
 import renue.utils.Pair;
 
 public class Cycle {
@@ -25,7 +25,7 @@ public class Cycle {
         Deque<Data> nodes = new ArrayDeque<>();
         nodes.addAll(fileHandler.getNodes());
 
-        Searchable search = new HMap();
+        Searchable search = new Trie();
 
         while (!nodes.isEmpty()) {
             search.insert(nodes.removeFirst());
